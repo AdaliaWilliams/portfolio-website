@@ -1,12 +1,7 @@
-…or create a new repository on the command line
- echo "# Lab-1-Adalia-Williams" >> README.md
+echo "# CS145-Final" >> README.md
 git init
 git add README.md
 git commit -m "first commit"
 git branch -M main
-git remote add origin git@github.com:2022-CS-148/Lab-1-Adalia-Williams.git
-git push -u origin main
-…or push an existing repository from the command line
- git remote add origin git@github.com:2022-CS-148/Lab-1-Adalia-Williams.git
-git branch -M main
+git remote add origin git@github.com:AdaliaWilliams/CS145-Final.git
 git push -u origin main
