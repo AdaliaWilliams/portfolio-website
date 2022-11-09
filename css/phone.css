@@ -1,12 +1,14 @@
-nav a{
-    display: block;
-    padding: .5%;
-}
-
 nav{
     text-align: left;
 }
 
+nav a{
+    padding-right: .2em;
+}
+
 h1, h2{
     font-size: large;
+}
+footer{
+    display: block;
 }

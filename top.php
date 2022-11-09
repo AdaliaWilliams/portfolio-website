@@ -18,6 +18,8 @@
           type="text/css">
 </head>
 <?php
+
+include 'lib/constants.php';
 print '<body>';
 print '<!-- ***** START OF BODY ***** -->';
 

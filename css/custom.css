@@ -1,12 +1,64 @@
+*{
+    margin: 0;
+    font-family: Helvetica;
+    box-sizing: border-box;
+}
 :root{
     --main-color: black;
-    --main-bg-color: lavender;
+    --main-bg-color: floralwhite;
 }
+
+/* nav styling*/
+nav {
+    text-decoration: none;
+    grid-area: nav;
+    padding: .5%;
+    background-color: darkslateblue;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+    margin: auto;
+    max-width: 70%;
+}
+
+nav a{
+    font-size: 12px;
+    color: white;
+    display: inline-block;
+    padding: 14px 16px;
+}
+
+nav a:hover{
+    background-color: darkgray;
+}
+
+article, section, aside, nav{
+    padding: 1%;
+}
+
+header h1{
+    padding: 5px;
+    grid-area: header;
+    font-size: 25px;
+    text-align: center;
+}
+header h2{
+    padding: 5px;
+    grid-area: header;
+    font-size: 20px;
+    max-height: 30em;
+    text-align: center;
+}
+
+/* general css*/
+
 
 figure{
     float: left;
     text-align: center;
-    width: 30%; /* -----change if needed!!!------ */
+    width: 30%;
 }
 
 img{
@@ -14,6 +66,9 @@ img{
 }
 
 body{
+    display: grid;
+    margin: 0px;
+    padding: 0px;
     border: thin solid var(--main-color);
     background-color: var(--main-bg-color);
     color: var(--main-color);
@@ -27,62 +82,807 @@ html{
     background-color: white;
 }
 
-nav{
-    background-color: var(--main-bg-color);
+
+
+/* create css */
+.create h1{
+    text-align: center;
+    text-decoration: underline;
+    tab-size: 25px;
+}
+.createAnOutfit .numbertext{
     text-align: center;
 }
 
-article, section , aside, nav{
-    padding: 1%;
+
+
+.createAnOutfit .text{
+    text-align: center;
 }
 
-table{
-    clear: both;
-}
- /* ----FORM CSS TO ALTER WHEN FORM ADDED TO SITE
-form{
-    max-width: 400px;
-    border: medium solid darkolivegreen;
-    background-color: black;
-    color: darkolivegreen;
-    padding: 1%;
+.slideshow-container-tops,.slideshow-container-bottoms, .slideshow-container-dresses , .slideshow-container-shoes, .slideshow-container-accessories{
+    max-width: 40%;
+    position: relative;
     margin: auto;
 }
 
-.contact label{
-    font-size: xx-small;
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
 }
 
-fieldset{
-    border: none;
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
 }
 
-fieldset p{
-    margin-bottom: 1em;
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
 }
 
-legend{
-    padding-bottom: 0;
-    margin-bottom: 0;
-    line-height: 1;
+/* Caption text */
+.text {
+    color: black;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+    color: black;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+/* The dots/bullets/indicators */
+.topDot, .bottomDot, .dressDot, .shoeDot, .accessDot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+
+/*Bottoms CSS*/
+.bottoms{
+    display: grid;
+    grid-template-areas:
+        'nav' 'nav'
+        'header' 'header'
+        'h1' 'h1'
+        'pants' 'skirts'
+        'footer' 'footer'
+;
+}
+.bottomsHeader{
+    grid-area: h1;
+    text-align: center;
+    margin: auto;
+}
+
+.pants{
+    grid-area: pants;
+    padding: 10px;
+    margin: auto;
+    background-color: darkslategray;
+    border-radius: 10px;
+}
+
+.pants a{
+    color: white;
+}
+.skirts{
+    grid-area: skirts;
+    padding: 10px;
+    margin: auto;
+    background-color: darkslategray;
+    border-radius: 10px;
+}
+.skirts a{
+    color: white;
+}
+.pantsMain {
+    display: grid;
+    grid-template-areas:
+        'nav nav'
+        'header header'
+        'head head'
+        'image1 image2'
+        'image3 image4'
+        'image5 image6'
+        'image7 auto'
+        'footer footer '
+;
+}
+
+.pantsHeader{
+    grid-area: head;
+    text-align: center;
+
+}
+.pantsImage1{
+    grid-area: image1;
+    width: auto;
+    margin: auto;
+}
+
+.pantsImage1 img {
+    max-width: 80%;
+}
+
+
+.pantsImage2{
+    grid-area: image2;
+    width: auto;
+    margin: auto;
+}
+
+.pantsImage2 img {
+    max-width: 80%;
+}
+
+.pantsImage3{
+    grid-area: image3;
+    width: auto;
+    margin: auto;
+}
+
+.pantsImage3 img {
+    max-width: 80%;
+}
+.pantsImage4{
+    grid-area: image4;
+    width: auto;
+    margin: auto;
+}
+
+.pantsImage4 img {
+    max-width: 80%;
+}
+
+.pantsImage5{
+    grid-area: image5;
+    width: auto;
+    margin: auto;
+}
+
+.pantsImage5 img {
+    max-width: 80%;
+}
+
+.pantsImage6{
+    grid-area: image6;
+    width: auto;
+    margin: auto;
+}
+
+.pantsImage6 img {
+    max-width: 80%;
+}
+
+.pantsImage7{
+    grid-area: image7;
+    width: auto;
+    margin: auto;
+}
+
+.pantsImage7 img {
+    max-width: 80%;
+}
+
+
+/* Skirt Css*/
+.skirtsMain {
+    display: grid;
+    grid-template-areas:
+        'nav nav'
+        'header header'
+        'skirtHead skirtHead'
+        'skirtImage1 skirtImage2'
+        'skirtImage3 skirtImage4'
+        'skirtImage5 auto'
+        'footer footer'
+;
+}
+
+.skirtsHeader{
+    grid-area: skirtHead;
+    text-align: center;
+    padding: 5px;
+
+}
+.skirtsImage1{
+    grid-area: skirtImage1;
+    width: auto;
+    margin: auto;
+}
+
+.skirtsImage1 img {
+    max-width: 80%;
+}
+
+
+.skirtsImage2{
+    grid-area: skirtImage2;
+    width: auto;
+    margin: auto;
+}
+
+.skirtsImage2 img {
+    max-width: 80%;
+}
+
+.skirtsImage3{
+    grid-area: skirtImage3;
+    width: auto;
+    margin: auto;
+}
+
+.skirtsImage3 img {
+    max-width: 80%;
+}
+
+.skirtsImage4{
+    grid-area: skirtImage4;
+    width: auto;
+    margin: auto;
+}
+
+.skirts4 img {
+    max-width: 80%;
+}
+
+.skirtsImage5{
+    grid-area: skirtImage5;
+    width: auto;
+    margin: auto;
+}
+
+.skirtsImage5 img {
+    max-width: 80%;
+}
+
+
+/* SHOES CSS*/
+
+.shoesMain {
+    display: grid;
+    grid-template-areas:
+        'nav nav nav'
+        'header header header'
+        'shoeHeader shoeHeader shoeHeader'
+        'shoeImage1 shoeImage2 shoeImage3'
+        'shoeImage4 shoeImage5 auto'
+        'footer footer footer'
+;
+}
+
+.shoesHeader{
+    grid-area: shoeHeader;
+    text-align: center;
+    padding: 5px;
+
+}
+
+.shoesImage1{
+    grid-area: shoeImage1;
+    width: auto;
+    margin: auto;
+}
+
+.shoesImage1 img {
+    max-width: 80%;
+}
+
+.shoesImage2{
+    grid-area: shoeImage2;
+    width: auto;
+    margin: auto;
+}
+
+.shoesImage2 img {
+    max-width: 80%;
+}
+
+.shoesImage3{
+    grid-area: shoeImage3;
+    width: auto;
+    margin: auto;
+}
+
+.shoesImage3 img {
+    max-width: 80%;
+}
+
+.shoesImage4{
+    grid-area: shoeImage4;
+    width: auto;
+    margin: auto;
+}
+
+.shoesImage4 img {
+    max-width: 80%;
+}
+
+.shoesImage5{
+    grid-area: shoeImage5;
+    width: auto;
+    margin: auto;
+}
+
+.shoesImage5 img {
+    max-width: 80%;
+}
+
+/* DRESS CSS */
+
+
+.dressMain {
+    display: grid;
+    grid-template-areas:
+        'nav nav nav'
+        'header header header'
+        'dressHeader dressHeader dressHeader'
+        'dressImage1 dressImage2 dressImage3'
+        'dressImage4 dressImage5 dressImage6'
+        'footer footer footer'
+;
+}
+
+.dressHeader{
+    grid-area: dressHeader;
+    text-align: center;
+    padding: 5px;
+
+}
+
+.dressImage1{
+    grid-area: dressImage1;
+    width: auto;
+    margin: auto;
+}
+
+.dressImage1 img {
+    max-width: 80%;
+}
+
+.dressImage2{
+    grid-area: dressImage2;
+    width: auto;
+    margin: auto;
+}
+
+.dressImage2 img {
+    max-width: 80%;
+}
+
+.dressImage3{
+    grid-area: dressImage3;
+    width: auto;
+    margin: auto;
+}
+
+.dressImage3 img {
+    max-width: 80%;
+}
+
+.dressImage4{
+    grid-area: dressImage4;
+    width: auto;
+    margin: auto;
+}
+
+.dressImage4 img {
+    max-width: 80%;
+}
+
+.dressImage5{
+    grid-area: dressImage5;
+    width: auto;
+    margin: auto;
+}
+
+.dressImage5 img {
+    max-width: 80%;
+}
+
+.dressImage6{
+    grid-area: dressImage6;
+    width: auto;
+    margin: auto;
+}
+
+.dressImage6 img {
+    max-width: 80%;
+}
+
+/* ACCESSORY CSS */
+
+.accessMain {
+    display: grid;
+    grid-template-areas:
+        'nav nav nav'
+        'header header header'
+        'accessHeader accessHeader accessHeader'
+        'accessImage1 accessImage2 accessImage3'
+        'accessImage4 accessImage5 accessImage6'
+        'footer footer footer'
+;
+}
+
+.accessHeader{
+    grid-area: accessHeader;
+    text-align: center;
+    padding: 5px;
+
+}
+
+.accessImage1{
+    grid-area: accessImage1;
+    width: auto;
+    margin: auto;
+}
+
+.accessImage1 img {
+    max-width: 80%;
+}
+
+.accessImage2{
+    grid-area: accessImage2;
+    width: auto;
+    margin: auto;
+}
+
+.accessImage2 img {
+    max-width: 80%;
+}
+
+.accessImage3{
+    grid-area: accessImage3;
+    width: auto;
+    margin: auto;
+}
+
+.accessImage3 img {
+    max-width: 80%;
+}
+
+.accessImage4{
+    grid-area: accessImage4;
+    width: auto;
+    margin: auto;
+}
+
+.accessImage4 img {
+    max-width: 80%;
+}
+
+.accessImage5{
+    grid-area: accessImage5;
+    width: auto;
+    margin: auto;
+}
+
+.accessImage5 img {
+    max-width: 80%;
+}
+
+.accessImage6{
+    grid-area: accessImage6;
+    width: auto;
+    margin: auto;
+}
+
+.accessImage6 img {
+    max-width: 80%;
+}
+
+/* TOPS CSS */
+.topsMain {
+    display: grid;
+    grid-template-areas:
+        'nav nav nav'
+        'header header header'
+        'topsHeader topsHeader topsHeader'
+        'topsImage1 topsImage2 topsImage3'
+        'topsImage4 topsImage5 topsImage6'
+        'topsImage7 topsImage8 topsImage9'
+        'topsImage10 topsImage11 topsImage12'
+        'topsImage13 topsImage14 auto'
+        'footer footer footer'
+;
+}
+
+.topsHeader{
+    grid-area: topsHeader;
+    text-align: center;
+    padding: 5px;
+
+}
+
+.topsImage1{
+    grid-area: topsImage1;
+    width: auto;
+    margin: auto;
+}
+
+.topsImage1 img {
+    max-width: 80%;
+}
+
+.topsImage2{
+    grid-area: topsImage2;
+    width: auto;
+    margin: auto;
+}
+
+.topsImage2 img {
+    max-width: 80%;
+}
+
+.topsImage3{
+    grid-area: topsImage3;
+    width: auto;
+    margin: auto;
+}
+
+.topsImage3 img {
+    max-width: 80%;
+}
+
+.topsImage4{
+    grid-area: topsImage4;
+    width: auto;
+    margin: auto;
+}
+
+.topsImage4 img {
+    max-width: 80%;
+}
+
+.topsImage5{
+    grid-area: topsImage5;
+    width: auto;
+    margin: auto;
+}
+
+.topsImage5 img {
+    max-width: 80%;
+}
+
+.topsImage6{
+    grid-area: topsImage6;
+    width: auto;
+    margin: auto;
+}
+
+.topsImage6 img {
+    max-width: 80%;
+}
+
+.topsImage7{
+    grid-area: topsImage7;
+    width: auto;
+    margin: auto;
+}
+
+.topsImage7 img {
+    max-width: 80%;
+}
+
+.topsImage8{
+    grid-area: topsImage8;
+    width: auto;
+    margin: auto;
+}
+
+.topsImage8 img {
+    max-width: 80%;
+}
+
+.topsImage9{
+    grid-area: topsImage9;
+    width: auto;
+    margin: auto;
+}
+
+.topsImage9 img {
+    max-width: 80%;
+}
+
+.topsImage10{
+    grid-area: topsImage10;
+    width: auto;
+    margin: auto;
+}
+
+.topsImage10 img {
+    max-width: 80%;
+}
+
+.topsImage11{
+    grid-area: topsImage11;
+    width: auto;
+    margin: auto;
+}
+
+.topsImage11 img {
+    max-width: 80%;
+}
+
+.topsImage12{
+    grid-area: topsImage12;
+    width: auto;
+    margin: auto;
+}
+
+.topsImage12 img {
+    max-width: 80%;
+}
+
+.topsImage13{
+    grid-area: topsImage13;
+    width: auto;
+    margin: auto;
+}
+
+.topsImage13 img {
+    max-width: 80%;
+}
+
+.topsImage14{
+    grid-area: topsImage14;
+    width: auto;
+    margin: auto;
+}
+
+.topsImage14 img {
+    max-width: 80%;
+}
+
+/* INDEX CSS*/
+.indexMain{
+    display: grid;
+    grid-template-areas: 'nav'
+    'header
+    'indexHeader'
+    'paragraph'
+    'footer';
+}
+.indexHeader{
+    grid-area: indexHeader;
+    text-align: center;
+    padding: 5px;
+    width: auto;
+    margin-top: 5px;
+}
+.indexContent{
+    grid-area: paragraph;
+    text-align: center;
+    padding: 5px;
+    width: auto;
+    margin-top: 30px;
+}
+
+/* Contact CSS*/
+
+
+.contactMain{
+    display: grid;
+    grid-template-areas: 'nav'
+    'header
+    'contactHeader'
+    'contactParagraph'
+    'footer';
+}
+.contactHeader{
+    grid-area: contactHeader;
+    text-align: center;
+    padding: 5px;
+    width: auto;
+    margin-top: 5px;
+}
+.contactContext{
+    grid-area: contactParagraph;
+    text-align: center;
+    padding: 5px;
+    width: auto;
+    margin-top: 30px;
+}
+
+/* FORM STYLING */
+.addClothingForm{
+    display: grid;
+    grid-template-areas: 'nav'
+    'header'
+    'formHeader'
+    'form'
+    'footer';
+}
+
+.formHeader{
+    grid-area: formHeader;
+    margin: auto;
+    text-align: center;
+}
+
+.form{
+    grid-area: form;
+    max-width: 400px;
+    border-style: none;
+    background-color: lightsteelblue;
+    color:  black;
+    margin: auto;
+    font-size: 105%;
+    text-transform: capitalize;
+    text-align: center;
+    padding: 10px;
 }
 
 label + input, label + textarea{
     display: block;
+    border-radius: 5px;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 10px;
+    scale: 101%;
 }
 
-input[type=text]{
+input[type=submit]{
     border: 0;
-    background-color: black;
-    border-bottom: medium solid darkolivegreen;
-    width: 100%;
+    background-color: lightsteelblue;
+    border-bottom: medium solid black;
+    padding: 10px;
+    width: 40%;
     height: 2em;
-    color: darkolivegreen;
+    color:  black;
     font-size: large;
 }
 
-select{
-    font-size: large;
+
+.mistake {
+    background-color: rgba(255, 0, 0, .2);
 }
 
 textarea{
@@ -95,18 +895,16 @@ textarea{
 }
 
 input[type=submit]{
-    width: 80%;
+    width: 40%;
+    height: 50%;
     text-align: center;
     font-size: 2em;
-    background-color: black;
-    color: darkolivegreen;
-    border-color: darkolivegreen;
-    border-radius: .25em;
+    background-color:  lightgray;
+    color: black;
+    border-color:  gray;
+    border-radius: 5px;
 }
 
-  */
-
-/* Grid CSS */
 
 body{
     display: grid;
@@ -134,4 +932,8 @@ main{
 
 footer{
     grid-area: footer;
+}
+
+.radio img {
+    max-width: 30%;
 }

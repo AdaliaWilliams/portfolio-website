@@ -2,11 +2,12 @@
 include 'top.php';
 ?>
 
-<main>
-    <h2>Bottms</h2>
+<main class="bottoms">
+    <h2 class="bottomsHeader">Bottoms</h2>
 
-    <p><a href="pants.php">Pants</a></p>
-    <p><a href="skirts.php.php">Skirts</a></p>
+
+    <p class="pants"><a href="pants.php">Pants</a></p>
+    <p class="skirts"><a href="skirts.php">Skirts</a></p>
 </main>
 <?php
 include 'footer.php';

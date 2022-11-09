@@ -1,9 +1,9 @@
 <?php
 include 'top.php';
-print '<main>';
 ?>
+<main class="addClothingForm">
 
-        <h1>Add an Item of Clothing</h1>
+        <h1 class="formHeader">Add an Item of Clothing</h1>
 <?php
 
 
@@ -18,19 +18,20 @@ function getData($field) {
     return $data;
 }
 
-//validate data
-$memberId = 0;
-$memberEmail = '';
-$firstName = '';
-$lastName = '';
-$yearGrad = '';
-$communication = 1;
+//initialize data
+$clothingName = '';
+$type = '';
+$color = '';
+$graphic = '';
+$imageFileName = '';
+$date = '';
+
 
 $saveData = true;
 ?>
 
-    <section class="memberForm">
-        <form action="form.php" method="POST">
+    <section class="addClothing">
+        <form class="form" name="addClothing" action="form.php" method="POST" onsubmit="return validateForm()">
             <?php
 
             //add an if statement before form code to print out the post array
@@ -42,110 +43,204 @@ $saveData = true;
                 }
 
 
+
                 //sanitize data
 
-
-
+                $clothingName = getData("txtClothingName");
+                $type = getData("lstClothingType");
+                $color = getData("txtColor");
+                $graphic = getData("txtGraphic");
+                $imageFileName = getData("txtFileName");
 
 
 
 
                 //validate data
 
-                if (!filter_var($memberEmail, FILTER_VALIDATE_EMAIL)) {
-                    print '<p class="mistake">Please choose a valid email address</p>';
+
+                if ($clothingName == "") {
+                    print '<p class="mistake">Please enter the clothing name</p>';
                     $saveData = false;
                 }
 
-                if ($firstName == "") {
-                    print '<p class="mistake">Please enter your first name</p>';
+                if ($type == "") {
+                    print '<p class="mistake">Please choose the clothing type</p>';
+                    $saveData = false;
+                }
+                if ($color == "") {
+                    print '<p class="mistake">Please enter the clothing color</p>';
+                    $saveData = false;
+                }
+                if ($graphic == "") {
+                    print '<p class="mistake">Please enter if there is a graphic</p>';
+                    $saveData = false;
+                }
+                if ($imageFileName == "") {
+                    print '<p class="mistake">Please enter the file name</p>';
                     $saveData = false;
                 }
 
-                if ($lastName == "") {
-                    print '<p class="mistake">Please enter your last name</p>';
-                    $saveData = false;
-                }
-                if ($yearGrad == "") {
-                    print '<p class="mistake">Please choose the year you are graduating</p>';
-                    $saveData = false;
-                }
-                if ($communication == 0) {
-                    print '<p class="mistake">Please check the communication box</p>';
-                    $saveData = false;
-                }
 
 
                 if ($saveData) {
 
-                    $sql2 = 'INSERT INTO tblMember SET ';
-                    $sql2 .= 'pmkMemberId = ?, ';
-                    $sql2 .= 'fldEmail = ?, ';
-                    $sql2 .= 'fldFirstName = ?, ';
-                    $sql2 .= 'fldLastName = ?, ';
-                    $sql2 .= 'fldYearGraduating = ?, ';
-                    $sql2 .= 'fldReceiveCommunication = ?';
-
-                    $data2 = array($memberId, $memberEmail, $firstName, $lastName, $yearGrad, $communication);
-
-                    if (DEBUG) {
-                        print $thisDatabaseReader->displayQuery($sql2, $data2);
-                    } else {
-                        $thisDatabaseWriter->insert($sql2, $data2);
-                        print "<h1> Thank You! </h1>";
-                    }
 
                 }
             }
             ?>
             <fieldset>
-                <input type="hidden" name="memberId" id="memberId" value="<?php print $memberId; ?>">
-            </fieldset>
-            <fieldset class = "textbox">
                 <p>
-                    <label for="txtMemberEmail">Email Address</label>
-                    <input type="email" id="txtMemberEmail" name="txtMemberEmail" value="<?php print $memberEmail; ?>">
+                    <label for="txtClothingName">Clothing Name</label>
+                    <input type="text" id="txtClothingName" name="txtClothingName" value="<?php print $clothingName;?>"
+                    onfocus="this.select()" required>
+
                 </p>
             </fieldset>
-            <fieldset class = "textbox">
-                <p>
-                    <label for="txtFirstName">First Name</label>
-                    <input type="text" id="txtFirstName" name="txtFirstName" value="<?php print $firstName; ?>">
-                </p>
-            </fieldset>
-            <fieldset class = "textbox">
-                <p>
-                    <label for="txtLastName">Last Name</label>
-                    <input type="text" id="txtLastName" name="txtLastName" value="<?php print $lastName; ?>">
-                </p>
-            </fieldset>
+
             <fieldset>
-                <label for="lstYearGrad" >What Year do you plan to Graduate?</label>
-                <select name="lstYearGrad" id="lstYearGrad">
-                    <option value="2022">2022</option>
-                    <option value="2023">2023</option>
-                    <option value="2024">2024</option>
-                    <option value="2025">2025</option>
-                    <option value="2026">2026</option>
-                    <option value="2027">2027</option>
+                <label for="lstClothingType" >What is the Clothing Type?</label>
+                <select name="lstClothingType" id="lstClothingType" onfocus="this.select()" required>
+                    <option value="top">Top</option>
+                    <option value="bottom">Bottom</option>
+                    <option value="dress">Dress</option>
+                    <option value="shoes">Shoes</option>
+                    <option value="accessory">Accessory</option>
                 </select>
             </fieldset>
+
+
             <fieldset>
-                <legend class='form-bold'>Would you like to receive emails?</legend>
                 <p>
-                    <label for="chkCommunication">Agree</label>
-                    <input name="chkCommunication" type="hidden" value="0">
-                    <input <?php if ($communication) print 'checked'; ?> type="checkbox" name="chkCommunication" id="chkCommunication" value="1">
+                    <label for="txtColor">Color</label>
+                    <input type="text" id="txtColor" name="txtColor" value="<?php print $color;?>"
+                           onfocus="this.select()" required>
                 </p>
             </fieldset>
+
             <fieldset>
                 <p>
-                    <input type="submit" value="Join" name="btnSubmit">
+                    <label for="txtGraphic">Graphic</label>
+                    <input type="text" id="txtGraphic" name="txtGraphic" value="<?php print $graphic;?>"
+                        onfocus="this.select()" required>
+                </p>
+            </fieldset>
+
+            <fieldset>
+                <p>
+                    <label for="txtFileName">Image Filename</label>
+                    <input type="text" id="txtFileName" name="txtFileName" value="<?php print $imageFileName;?>"
+                        onfocus="this.select()">
+                </p>
+            </fieldset>
+
+            <fieldset>
+                <p id ="addClothingSubmit">
+                    <input class="button" type="submit" value="Add" name="btnSubmit">
                 </p>
             </fieldset>
         </form>
     </section>
     </main>
+
+<script>
+    //initialize data
+    let clothingName = '';
+    let type = '';
+    let color = '';
+    let graphic = '';
+    let imageFileName = '';
+    let date = '';
+
+    //sanitize
+    clothingName = document.getElementById("txtClothingName");
+    type = document.getElementById("lstClothingType");
+    color = document.getElementById("txtColor");
+    graphic = document.getElementById("txtGraphic");
+    imageFileName = document.getElementById("txtFileName");
+    const d = new Date();
+    let dataIsGood = true;
+
+    //validate
+    function validateForm() {
+        let clothingName = document.forms["addClothing"]["txtClothingName"].value;
+        let clothingType = document.forms["addClothing"]["lstClothingType"].value;
+        let clothingColor = document.forms["addClothing"]["txtColor"].value;
+        let clothingGraphic = document.forms["addClothing"]["txtGraphic"].value;
+        let fileName = document.forms["addClothing"]["txtFileName"].value;
+
+        if (clothingName == "") {
+            console.log("The clothing name must be filled out")
+            dataIsGood = false;
+        }
+        if (clothingType == "") {
+            console.log("The clothing type seems to be blank.");
+            dataIsGood = false;
+        }
+        if (clothingColor == "") {
+            console.log("The clothing color must be filled out")
+            dataIsGood = false;
+        }
+        if (clothingGraphic == "") {
+            console.log("The clothing graphic must be filled out")
+            dataIsGood = false;
+        }
+        if (fileName == "") {
+            console.log("The filename must be filled out")
+            dataIsGood = false;
+        }
+
+    }
+
+    function verifyAlphaNum(testString) {
+        //check for letters, numbers
+        //make sure there is no undesired characters
+        return testString.match(/^[a-zA-Z0-9]+$/);
+    }
+
+
+    //validate
+    if ( clothingName == "") {
+        console.log("Please enter the clothing name");
+        dataIsGood = false;
+    } else if(!verifyAlphaNum(clothingName)) {
+        console.log("The clothing name contains invalid characters, just use letters.")
+        dataIsGood = false;
+    }
+
+    if ( type == "") {
+        console.log("Please enter the type of clothing");
+        dataIsGood = false;
+    } else if(!verifyAlphaNum(type)) {
+        console.log("The clothing type contains invalid characters, just use letters.")
+        dataIsGood = false;
+    }
+
+    if ( color == "") {
+        console.log("Please enter the clothing color");
+        dataIsGood = false;
+    } else if(!verifyAlphaNum(color)) {
+        console.log("The clothing color contains invalid characters, just use letters.")
+        dataIsGood = false;
+    }
+
+    if ( graphic == "") {
+        console.log("Please enter if there is a graphic");
+        dataIsGood = false;
+    } else if(!verifyAlphaNum(clothingName)) {
+        console.log("The graphic contains invalid characters, just use letters. (use N/A)")
+        dataIsGood = false;
+    }
+
+    if ( imageFileName == "") {
+        console.log("Please enter the image file name");
+        dataIsGood = false;
+    } else if(!verifyAlphaNum(imageFileName)) {
+        console.log("The image file name contains invalid characters, just use letters.")
+        dataIsGood = false;
+    }
+
+
+</script>
 <?php
 include 'footer.php';
 ?>

@@ -52,3 +52,4 @@
         print 'activePage';
     }
     ?>" href="contact.php">Contact</a>
+</nav>
