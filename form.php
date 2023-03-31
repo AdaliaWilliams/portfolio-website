@@ -3,9 +3,10 @@ include 'top.php';
 ?>
 <main class="addClothingForm">
 
-        <h1 class="formHeader">Add an Item of Clothing</h1>
+        <h1 class="formHeader">Add To Your Online Closet</h1>
 <?php
-
+//this form will first ask the user which item of clothing they wish to insert into
+//depending on the answer, the page will direct into a new page to insert into a specific table
 
 function getData($field) {
     if (!isset($_POST[$field])) {
@@ -19,19 +20,17 @@ function getData($field) {
 }
 
 //initialize data
-$clothingName = '';
-$type = '';
-$color = '';
-$graphic = '';
-$imageFileName = '';
-$date = '';
+$clothingType = '';
 
 
 $saveData = true;
+
+
+
 ?>
 
     <section class="addClothing">
-        <form class="form" name="addClothing" action="form.php" method="POST" onsubmit="return validateForm()">
+        <form class="form" name="addClothing" method="POST" onsubmit="submitFunction()">
             <?php
 
             //add an if statement before form code to print out the post array
@@ -41,101 +40,102 @@ $saveData = true;
                     print_r($_POST);
                     print '</pre>';
                 }
-
-
-
-                //sanitize data
-
-                $clothingName = getData("txtClothingName");
-                $type = getData("lstClothingType");
-                $color = getData("txtColor");
-                $graphic = getData("txtGraphic");
-                $imageFileName = getData("txtFileName");
-
-
-
-
-                //validate data
-
-
-                if ($clothingName == "") {
-                    print '<p class="mistake">Please enter the clothing name</p>';
-                    $saveData = false;
-                }
-
-                if ($type == "") {
-                    print '<p class="mistake">Please choose the clothing type</p>';
-                    $saveData = false;
-                }
-                if ($color == "") {
-                    print '<p class="mistake">Please enter the clothing color</p>';
-                    $saveData = false;
-                }
-                if ($graphic == "") {
-                    print '<p class="mistake">Please enter if there is a graphic</p>';
-                    $saveData = false;
-                }
-                if ($imageFileName == "") {
-                    print '<p class="mistake">Please enter the file name</p>';
-                    $saveData = false;
-                }
-
-
-
-                if ($saveData) {
-
-
-                }
             }
-            ?>
+
+            //sanitize data
+            $clothingType= getData("radClothingType");
+
+            //validate data
+            if ($clothingType != "Shirt" AND $clothingType != "Sweater" AND $clothingType != "Jacket" AND $clothingType != "Pants" AND $clothingType != "Skirt" AND $clothingType != "Dress"
+                AND $clothingType != "FullBody" AND $clothingType != "Activewear") {
+                print '<p class="mistake"> Please choose a clothing type.</p>';
+                $dataIsGood = false;
+            }
+
+            if ($saveData) {
+                print '<h2> Thank you for submitting, your information was recieved.</h2>';
+
+            }
+
+                ?>
+
+
             <fieldset>
+                <legend>What is the Clothing Type?</legend>
+
                 <p>
-                    <label for="txtClothingName">Clothing Name</label>
-                    <input type="text" id="txtClothingName" name="txtClothingName" value="<?php print $clothingName;?>"
-                    onfocus="this.select()" required>
-
+                <label for="radClothingShirt">Shirt</label>
+                <input type="radio" name ="radClothingType" value="Shirt" id="radClothingShirt"
+                    <?php if ($clothingType == "Shirt") {print "checked";}?>
+                >
                 </p>
-            </fieldset>
 
-            <fieldset>
-                <label for="lstClothingType" >What is the Clothing Type?</label>
-                <select name="lstClothingType" id="lstClothingType" onfocus="this.select()" required>
-                    <option value="top">Top</option>
-                    <option value="bottom">Bottom</option>
-                    <option value="dress">Dress</option>
-                    <option value="shoes">Shoes</option>
-                    <option value="accessory">Accessory</option>
-                </select>
-            </fieldset>
-
-
-            <fieldset>
                 <p>
-                    <label for="txtColor">Color</label>
-                    <input type="text" id="txtColor" name="txtColor" value="<?php print $color;?>"
-                           onfocus="this.select()" required>
+                <label for="radClothingSweater">Sweater</label>
+                <input type="radio" name ="radClothingType" value="Sweater" id="radClothingSweater"
+                    <?php if ($clothingType == "Sweater") {print "checked";}?>
+                >
                 </p>
-            </fieldset>
 
-            <fieldset>
                 <p>
-                    <label for="txtGraphic">Graphic</label>
-                    <input type="text" id="txtGraphic" name="txtGraphic" value="<?php print $graphic;?>"
-                        onfocus="this.select()" required>
+                <label for="radClothingJacket">Jacket</label>
+                <input type="radio" name ="radClothingType" value="Jacket" id="radClothingJacket"
+                    <?php if ($clothingType == "Jacket") {print "checked";}?>
+                >
                 </p>
-            </fieldset>
 
-            <fieldset>
                 <p>
-                    <label for="txtFileName">Image Filename</label>
-                    <input type="text" id="txtFileName" name="txtFileName" value="<?php print $imageFileName;?>"
-                        onfocus="this.select()">
+                    <label for="radClothingPants">Pants</label>
+                    <input type="radio" name ="radClothingType" value="Pants" id="radClothingPants"
+                        <?php if ($clothingType == "Pants") {print "checked";}?>
+                    >
                 </p>
+
+
+                <p>
+                    <label for="radClothingSkirt">Skirt</label>
+                    <input type="radio" name ="radClothingType" value="Skirt" id="radClothingSkirt"
+                        <?php if ($clothingType == "Skirt") {print "checked";}?>
+                    >
+                </p>
+
+                <p>
+                    <label for="radClothingDress">Dress</label>
+                    <input type="radio" name ="radClothingType" value="Dress" id="radClothingDress"
+                        <?php if ($clothingType == "Dress") {print "checked";}?>
+                    >
+                </p>
+
+                <p>
+                    <label for="radClothingFullBody">Full Body</label>
+                    <input type="radio" name ="radClothingType" value="FullBody" id="radClothingFullBody"
+                        <?php if ($clothingType == "FullBody") {print "checked";}?>
+                    >
+                </p>
+
+                <p>
+                    <label for="radClothingActivewear">Activewear</label>
+                    <input type="radio" name ="radClothingType" value="Activewear" id="radClothingActivewear"
+                        <?php if ($clothingType == "Activewear") {print "checked";}?>
+                    >
+                </p>
+
             </fieldset>
 
             <fieldset>
+                <!-- when the user presses the submit button, the website will direct it to a new page !-->
                 <p id ="addClothingSubmit">
-                    <input class="button" type="submit" value="Add" name="btnSubmit">
+                    <input class="button" id="submitBtn" type="submit" value="Add" name="btnSubmit" >
+
+                    <script>
+                        document.getElementById("submitBtn").addEventListener("click",submitFunction)''
+                        function submitFunction() {
+                            window.location.href="<?php print "insert". $clothingType. ".php"?>";
+                        }
+                    </script>
+                    <?php
+                    include "redirect.php";
+                    ?>
                 </p>
             </fieldset>
         </form>
@@ -144,50 +144,24 @@ $saveData = true;
 
 <script>
     //initialize data
-    let clothingName = '';
-    let type = '';
-    let color = '';
-    let graphic = '';
-    let imageFileName = '';
-    let date = '';
+    let clothingType;
+
 
     //sanitize
-    clothingName = document.getElementById("txtClothingName");
-    type = document.getElementById("lstClothingType");
-    color = document.getElementById("txtColor");
-    graphic = document.getElementById("txtGraphic");
-    imageFileName = document.getElementById("txtFileName");
-    const d = new Date();
-    let dataIsGood = true;
+
+    clothingType = document.getElementById("lstClothingType");
+
 
     //validate
     function validateForm() {
-        let clothingName = document.forms["addClothing"]["txtClothingName"].value;
         let clothingType = document.forms["addClothing"]["lstClothingType"].value;
-        let clothingColor = document.forms["addClothing"]["txtColor"].value;
-        let clothingGraphic = document.forms["addClothing"]["txtGraphic"].value;
-        let fileName = document.forms["addClothing"]["txtFileName"].value;
 
-        if (clothingName == "") {
-            console.log("The clothing name must be filled out")
-            dataIsGood = false;
-        }
+
         if (clothingType == "") {
             console.log("The clothing type seems to be blank.");
             dataIsGood = false;
         }
-        if (clothingColor == "") {
-            console.log("The clothing color must be filled out")
-            dataIsGood = false;
-        }
-        if (clothingGraphic == "") {
-            console.log("The clothing graphic must be filled out")
-            dataIsGood = false;
-        }
-        if (fileName == "") {
-            console.log("The filename must be filled out")
-            dataIsGood = false;
-        }
+
 
     }
 
@@ -199,43 +173,13 @@ $saveData = true;
 
 
     //validate
-    if ( clothingName == "") {
-        console.log("Please enter the clothing name");
-        dataIsGood = false;
-    } else if(!verifyAlphaNum(clothingName)) {
-        console.log("The clothing name contains invalid characters, just use letters.")
-        dataIsGood = false;
-    }
 
-    if ( type == "") {
+
+    if ( clothingType == "") {
         console.log("Please enter the type of clothing");
         dataIsGood = false;
     } else if(!verifyAlphaNum(type)) {
         console.log("The clothing type contains invalid characters, just use letters.")
-        dataIsGood = false;
-    }
-
-    if ( color == "") {
-        console.log("Please enter the clothing color");
-        dataIsGood = false;
-    } else if(!verifyAlphaNum(color)) {
-        console.log("The clothing color contains invalid characters, just use letters.")
-        dataIsGood = false;
-    }
-
-    if ( graphic == "") {
-        console.log("Please enter if there is a graphic");
-        dataIsGood = false;
-    } else if(!verifyAlphaNum(clothingName)) {
-        console.log("The graphic contains invalid characters, just use letters. (use N/A)")
-        dataIsGood = false;
-    }
-
-    if ( imageFileName == "") {
-        console.log("Please enter the image file name");
-        dataIsGood = false;
-    } else if(!verifyAlphaNum(imageFileName)) {
-        console.log("The image file name contains invalid characters, just use letters.")
         dataIsGood = false;
     }
 

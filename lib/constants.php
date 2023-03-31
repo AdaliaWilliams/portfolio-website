@@ -1,5 +1,6 @@
 <?php
 define('DEBUG', false);
+define('DATABASE_NAME', 'AWILLI36_csfair');
 
 $_SERVER = filter_input_array(INPUT_SERVER, FILTER_SANITIZE_STRING);
 
