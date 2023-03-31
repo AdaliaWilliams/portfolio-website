@@ -1,6 +1,7 @@
 <footer>
-    <p>Adalia Williams' <a href="../index.php">Site map (Main index)</a></p>
-    <p><cite>Information and images from <a href="https://www.urbanoutfitters.com" target="_blank">Urban OutFitters</a></cite></p>
+    <p> Adalia Williams </p>
+    <p> Bachelors in Computer Science, Art Minor</p>
+    <p> President of UVMtv, Filmer and CoCreator of Off the Rails </p>
 </footer>
 </body>
 </html>
