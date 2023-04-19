@@ -6,7 +6,7 @@
     <meta name="author" content="Adalia Williams">
     <meta name="description"
           content="see: https://moz.com/learn/seo/meta-description">
-    <title> </title>
+    <title> Portfolio </title>
     <link rel="stylesheet"
           href="css/custom.css?version=<?php print time(); ?>"
           type="text/css">

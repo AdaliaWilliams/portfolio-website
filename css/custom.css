@@ -4,17 +4,18 @@
     box-sizing: border-box;
 }
 :root{
-    --main-color: black;
-    --main-bg-color: RGB(252, 247, 222);
-    --main-accent-color: RGB(182, 104, 14);
-    --main-line-color: RGB(113, 86, 45);
+    --main-color: white;
+    --main-bg-color: RGB(18, 17, 36);
+    --main-accent-color: RGB(56, 69, 118);
+    --main-line-color: white;
 }
 
 /* nav styling*/
 nav {
+
     text-decoration: none;
     grid-area: nav;
-    padding: .5%;
+    padding: 3px;
     background-color: var(--main-accent-color);
     border: thin solid var(--main-line-color);
     border-width: 1px;
@@ -46,14 +47,14 @@ header h1{
     padding: 5px;
     grid-area: header;
     font-size: 25px;
-    text-align: center;
+    text-align: left;
 }
 header h2{
     padding: 5px;
     grid-area: header;
     font-size: 20px;
     max-height: 30em;
-    text-align: center;
+    text-align: right;
 }
 
 /* general css*/
@@ -69,17 +70,7 @@ img{
     max-width: 100%;
 }
 
-body{
-    display: grid;
-    margin: 0px;
-    padding: 0px;
-    background-color: var(--main-bg-color);
-    color: var(--main-color);
-    max-width: 50em;
-    line-height: 1.3em;
-    padding: 1%;
-    margin: auto;
-}
+
 
 html{
     background-color: var(--main-bg-color);
@@ -87,8 +78,17 @@ html{
 
 
 body{
+    background-color: var(--main-bg-color);
+    color: var(--main-color);
+    max-width: 50em;
+    line-height: 1.3em;
+    padding: 1%;
+    margin: auto;
     display: grid;
-    grid-template-areas: "header" "nav" "main" "footer";
+    grid-template-areas:
+            "header nav"
+            "main main"
+            "footer footer";
 }
 
 header{
@@ -108,6 +108,7 @@ nav a{
 
 main{
     grid-area: main;
+    margin: 30px;
 }
 
 footer{
@@ -115,6 +116,7 @@ footer{
     border: thin solid var(--main-line-color);
     background: var(--main-accent-color);
     padding: 1em;
+    margin: 15px;
     border-width: 1px;
 }
 

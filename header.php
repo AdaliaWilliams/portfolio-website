@@ -1,4 +1,3 @@
 <header>
-    <h1> Portfolio  </h1>
-    <h2>  Adalia Williams </h2>
+    <h1> Adalia Williams</h1>
 </header>
